@@ -1,0 +1,39 @@
+version: 1
+
+defaults:
+  timeout_seconds: 120
+  max_retries: 2
+  json_mode: true
+
+providers:
+  anthropic_direct:
+    adapter: anthropic_api
+    enabled: true
+    env:
+      api_key: ANTHROPIC_API_KEY
+    models:
+      strong: claude-opus-4-6
+      balanced: claude-sonnet-4-6
+      fast: claude-haiku-4-5-20251001
+
+  claude_code_headless:
+    adapter: claude_code_headless
+    enabled: true
+    command: claude
+    options:
+      print: true
+    models:
+      strong: claude-opus-4-6
+      balanced: claude-sonnet-4-6
+      fast: claude-haiku-4-5-20251001
+
+  litellm_gateway:
+    adapter: openai_compatible
+    enabled: true
+    base_url: http://127.0.0.1:4000/v1
+    env:
+      api_key: LITELLM_API_KEY
+    models:
+      cheap_text: openrouter/deepseek/deepseek-chat
+      balanced_text: anthropic/claude-sonnet-4-6
+      strong_text: anthropic/claude-opus-4-6

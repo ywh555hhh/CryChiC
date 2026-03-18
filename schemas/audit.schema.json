@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/audit.schema.json",
+  "title": "Audit Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["entry_id", "status", "score", "summary", "checks", "issues", "fix_notes"],
+  "properties": {
+    "entry_id": { "type": "string", "minLength": 1 },
+    "status": { "type": "string", "enum": ["pass", "needs_fix", "reject"] },
+    "score": { "type": "number", "minimum": 0, "maximum": 1 },
+    "summary": { "type": "string", "minLength": 10, "maxLength": 500 },
+    "checks": { "type": "object" },
+    "issues": { "type": "array" },
+    "fix_notes": { "type": "array" }
+  }
+}

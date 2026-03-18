@@ -1,0 +1,33 @@
+version: 1
+
+profiles:
+  cheap_gen:
+    purpose: 大批量生成候选内容
+    temperature: 0.7
+    max_tokens: 2200
+    response_format: json
+    provider_chain:
+      - provider: litellm_gateway
+        model_slot: cheap_text
+
+  balanced_explain:
+    purpose: 写中文解释和语境说明
+    temperature: 0.3
+    max_tokens: 2600
+    response_format: json
+    provider_chain:
+      - provider: anthropic_direct
+        model_slot: balanced
+      - provider: litellm_gateway
+        model_slot: balanced_text
+
+  strong_audit:
+    purpose: 最终审计与评分
+    temperature: 0.1
+    max_tokens: 2400
+    response_format: json
+    provider_chain:
+      - provider: anthropic_direct
+        model_slot: strong
+      - provider: claude_code_headless
+        model_slot: strong

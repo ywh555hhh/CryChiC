@@ -1,0 +1,29 @@
+version: 1
+
+stages:
+  sense_explainer:
+    prompt: prompts/sense_explainer.md
+    schema: schemas/sense.schema.json
+    profile: balanced_explain
+    input_from:
+      - job.input
+    output_to: sense.json
+
+  example_generator:
+    prompt: prompts/example_generator.md
+    schema: schemas/examples.schema.json
+    profile: cheap_gen
+    input_from:
+      - job.input
+      - stage.sense_explainer
+    output_to: examples.json
+
+  auditor:
+    prompt: prompts/auditor.md
+    schema: schemas/audit.schema.json
+    profile: strong_audit
+    input_from:
+      - job.input
+      - stage.sense_explainer
+      - stage.example_generator
+    output_to: audit.json
