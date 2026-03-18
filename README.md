@@ -8,6 +8,9 @@
 - 内容生产风格指南
 - JSON Schema 草案
 - `run_stage.py` pipeline skeleton
+- provider 切换设计说明
+- 3 个核心 prompt 模板
+- job/manifest 脚本骨架
 
 ## 当前核心方向
 - LLM 用于离线内容生产与审计，不直接暴露给终端用户
@@ -19,4 +22,7 @@
 - `docs/`：架构与设计文档
 - `configs/`：pipeline 配置草案
 - `schemas/`：结构化输出 schema
-- `scripts/`：pipeline skeleton
+- `prompts/`：核心 stage prompt 模板
+- `scripts/`：pipeline skeleton 与作业脚本
+- `jobs/`：job 队列目录
+- `runs/`：每次 run 的产物与 manifest
